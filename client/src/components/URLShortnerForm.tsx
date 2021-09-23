@@ -9,6 +9,8 @@ interface URLShortnerFormProps {}
 
 const URLShortnerForm: React.FC<URLShortnerFormProps> = () => {
   const [url, setUrl] = useState();
+  const [shortUrl, setShortUrl] = useState<{ shortId: string } | null>(null);
+
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -16,7 +18,7 @@ const URLShortnerForm: React.FC<URLShortnerFormProps> = () => {
       .post(`${SERVER_ENDPOINTS}/api/url`, { url })
       .then((res) => res.data);
 
-    console.log(result);
+    setShortUrl(result);
   };
 
   return (
@@ -27,6 +29,10 @@ const URLShortnerForm: React.FC<URLShortnerFormProps> = () => {
           placeholder='Enter URL'
         />
         <Button type='submit'>Create URL</Button>
+
+        {shortUrl && (
+          <a href={`${SERVER_ENDPOINTS}/${shortUrl?.shortId}`}>Click</a>
+        )}
       </form>
     </Box>
   );
