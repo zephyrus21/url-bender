@@ -31,7 +31,7 @@ const URLShortnerForm: React.FC<URLShortnerFormProps> = () => {
         <Button type='submit'>Create URL</Button>
 
         {shortUrl && (
-          <a href={`${SERVER_ENDPOINTS}/${shortUrl?.shortId}`}>Click</a>
+          <a href={`${window.location.origin}/${shortUrl?.shortId}`}>Click</a>
         )}
       </form>
     </Box>

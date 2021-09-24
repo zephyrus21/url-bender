@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  url-bender-server:
+    container_name: url-bender-server
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ./
+    image: url-bender-server
+    ports:
+      - "4000:4000"
